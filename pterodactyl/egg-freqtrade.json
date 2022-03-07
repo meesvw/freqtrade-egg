@@ -4,7 +4,7 @@
         "version": "PTDL_v1",
         "update_url": null
     },
-    "exported_at": "2022-03-07T11:21:08-05:00",
+    "exported_at": "2022-03-07T11:38:59-05:00",
     "name": "freqtrade",
     "author": "meesvw",
     "description": "Out of the box freqtrade bot",
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\napt install -y git wget\r\n\r\nHOME=\/mnt\/server\r\ncd \/mnt\/server\r\n\r\n# download freqtrade\r\ngit clone https:\/\/github.com\/freqtrade\/freqtrade.git .\r\ngit checkout stable\r\n\r\n# download config.json\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/freqtrade-strategies\/main\/config.json -O config.json\r\n\r\n# download config_checker.py\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/freqtrade-strategies\/main\/check_config.py -O config_checker.py\r\n\r\n# download strategies\r\ncd  .\/user_data\/strategies\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/freqtrade-strategies\/main\/hyperopt\/keltnerhopt.py -O keltnerhopt.py\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/freqtrade-strategies\/main\/strategies\/gold.py -O gold.py\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/freqtrade-strategies\/main\/strategies\/titanium.py -O titanium.py\r\nwget https:\/\/raw.githubusercontent.com\/freqtrade\/freqtrade-strategies\/master\/user_data\/strategies\/Diamond.py -O Diamond.py",
+            "script": "#!\/bin\/bash\r\napt install -y git wget\r\n\r\nHOME=\/mnt\/server\r\ncd \/mnt\/server\r\n\r\n# download freqtrade\r\ngit clone https:\/\/github.com\/freqtrade\/freqtrade.git .\r\ngit checkout stable\r\n\r\n# download config.json\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/redpie-trading\/main\/config.json -O config.json\r\n\r\n# download config_checker.py\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/redpie-trading\/main\/check_config.py -O config_checker.py\r\n\r\n# download strategies\r\ncd  .\/user_data\/strategies\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/redpie-trading\/main\/hyperopt\/keltnerhopt.py -O keltnerhopt.py",
             "container": "ghcr.io\/pterodactyl\/installers:debian",
             "entrypoint": "bash"
         }
@@ -48,12 +48,12 @@
         },
         {
             "name": "Strategy",
-            "description": "keltnerhopt(longterm\/high profit)\r\ngold(low risk\/good profit)\r\ntitanium(low risk\/low profit)\r\nDiamond(risky\/mixed profit)",
+            "description": "keltnerhopt(low risk\/high profit)",
             "env_variable": "BOT_STRATEGY",
             "default_value": "keltnerhopt",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:keltnerhopt,gold,titanium,Diamond,Strategy001,Strategy002"
+            "rules": "required|string|in:keltnerhopt"
         },
         {
             "name": "Platform",
