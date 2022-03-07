@@ -1,0 +1,113 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v1",
+        "update_url": null
+    },
+    "exported_at": "2022-03-07T11:21:08-05:00",
+    "name": "freqtrade",
+    "author": "meesvw",
+    "description": "Out of the box freqtrade bot",
+    "features": null,
+    "images": [
+        "freqbot:latest"
+    ],
+    "file_denylist": [],
+    "startup": "pip3 install -U --prefix .local -e .; python3 config_checker.py; python3 \/home\/container\/freqtrade\/main.py trade --strategy {{BOT_STRATEGY}};",
+    "config": {
+        "files": "{\r\n    \"config.json\": {\r\n        \"parser\": \"json\",\r\n        \"find\": {\r\n            \"api_server.listen_port\": \"{{server.build.default.port}}\",\r\n            \"exchange.key\": \"{{server.build.env.API_KEY}}\",\r\n            \"exchange.secret\": \"{{server.build.env.API_SECRET}}\",\r\n            \"dry_run\": \"{{server.build.env.DRY_RUN}}\",\r\n            \"max_open_trades\": \"{{server.build.env.MAX_OPEN_TRADES}}\",\r\n            \"telegram.enabled\": \"{{server.build.env.TELEGRAM}}\",\r\n            \"telegram.token\": \"{{server.build.env.TELEGRAM_TOKEN}}\",\r\n            \"telegram.chat_id\": \"{{server.build.env.TELEGRAM_CHAT_ID}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"freqtrade.worker - INFO - Changing state to: RUNNING\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\napt install -y git wget\r\n\r\nHOME=\/mnt\/server\r\ncd \/mnt\/server\r\n\r\n# download freqtrade\r\ngit clone https:\/\/github.com\/freqtrade\/freqtrade.git .\r\ngit checkout stable\r\n\r\n# download config.json\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/freqtrade-strategies\/main\/config.json -O config.json\r\n\r\n# download config_checker.py\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/freqtrade-strategies\/main\/check_config.py -O config_checker.py\r\n\r\n# download strategies\r\ncd  .\/user_data\/strategies\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/freqtrade-strategies\/main\/hyperopt\/keltnerhopt.py -O keltnerhopt.py\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/freqtrade-strategies\/main\/strategies\/gold.py -O gold.py\r\nwget https:\/\/raw.githubusercontent.com\/meesvw\/freqtrade-strategies\/main\/strategies\/titanium.py -O titanium.py\r\nwget https:\/\/raw.githubusercontent.com\/freqtrade\/freqtrade-strategies\/master\/user_data\/strategies\/Diamond.py -O Diamond.py",
+            "container": "ghcr.io\/pterodactyl\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Key",
+            "description": "Insert your API key here",
+            "env_variable": "API_KEY",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string"
+        },
+        {
+            "name": "Secret",
+            "description": "Insert your API secret here",
+            "env_variable": "API_SECRET",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string"
+        },
+        {
+            "name": "Strategy",
+            "description": "keltnerhopt(longterm\/high profit)\r\ngold(low risk\/good profit)\r\ntitanium(low risk\/low profit)\r\nDiamond(risky\/mixed profit)",
+            "env_variable": "BOT_STRATEGY",
+            "default_value": "keltnerhopt",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:keltnerhopt,gold,titanium,Diamond,Strategy001,Strategy002"
+        },
+        {
+            "name": "Platform",
+            "description": "Platform used to trade",
+            "env_variable": "PLATFORM",
+            "default_value": "binance",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:binance"
+        },
+        {
+            "name": "Dry run",
+            "description": "Enable this to test your strategy on the live market",
+            "env_variable": "DRY_RUN",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "boolean"
+        },
+        {
+            "name": "Max open trades",
+            "description": "How many trades can be opened at once by the bot",
+            "env_variable": "MAX_OPEN_TRADES",
+            "default_value": "10",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric"
+        },
+        {
+            "name": "Telegram bot",
+            "description": "Enable this to receive updates on your trading bot via Telegram",
+            "env_variable": "TELEGRAM",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "boolean"
+        },
+        {
+            "name": "Telegram token",
+            "description": "Insert your Telegram bot token here",
+            "env_variable": "TELEGRAM_TOKEN",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string"
+        },
+        {
+            "name": "Telegram user id",
+            "description": "Insert your Telegram user id here",
+            "env_variable": "TELEGRAM_CHAT_ID",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string"
+        }
+    ]
+}
