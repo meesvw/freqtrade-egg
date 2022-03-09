@@ -100,7 +100,8 @@
             "ICX/USDT",
             "HNT/USDT",
             "TORN/USDT",
-            "MBL/USDT"
+            "MBL/USDT",
+            "FIRO/USDT"
         ],
         "pair_blacklist": []
     },
