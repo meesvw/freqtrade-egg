@@ -99,7 +99,8 @@
             "HNT/USDT",
             "TORN/USDT",
             "MBL/USDT",
-            "FIRO/USDT"
+            "FIRO/USDT",
+            "GRT/USDT"
         ],
         "pair_blacklist": []
     },
