@@ -101,7 +101,8 @@
             "MBL/USDT",
             "FIRO/USDT",
             "GRT/USDT",
-            "OMG/USDT"
+            "OMG/USDT",
+            "GTO/USDT"
         ],
         "pair_blacklist": []
     },
