@@ -1,4 +1,4 @@
-# Redpie trading
+# Freqtrade egg
 
 **YOU ARE RESPONSIBLE FOR YOUR MONEY**
 
