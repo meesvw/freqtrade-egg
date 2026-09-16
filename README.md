@@ -2,7 +2,8 @@
 
 **YOU ARE RESPONSIBLE FOR YOUR MONEY**
 
+🚨CODE WILL NOT BE MAINTAINED ANYMORE🚨
+
 ## Credits
-- [DutchCryptoDad](https://www.youtube.com/channel/UC-AOcefy1x7lTc17JiqaxqA)
 - [Freqtrade](https://www.freqtrade.io/)
 - [Pterodactyl](https://pterodactyl.io/)
